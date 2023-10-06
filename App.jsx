@@ -6,6 +6,7 @@ import AuthProvider from './src/Contexts/AuthContext'
 const App = () => {
   return (
     <AuthProvider>
+      
       <AppNavigator/>
 
     </AuthProvider>

@@ -3,7 +3,6 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../Screens/Login'
 import DeviceSetup from '../Screens/DeviceSetup';
-import Splash from '../Screens/Splash';
 
 const Stack = createNativeStackNavigator();
 const AuthStack = () => {
@@ -11,7 +10,6 @@ const AuthStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
  
-    <Stack.Screen name="Spalsh" component={Splash} />
     <Stack.Screen name="DeviceSetup" component={DeviceSetup} />
     <Stack.Screen name="Login" component={Login} />
   </Stack.Navigator>
