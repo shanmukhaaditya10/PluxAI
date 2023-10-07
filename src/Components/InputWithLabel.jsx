@@ -1,11 +1,10 @@
-import { StyleSheet, Text, View , TextInput, Dimensions} from 'react-native'
+import { StyleSheet, Text, View , TextInput} from 'react-native'
 import React from 'react'
 import {verticalScale ,scale, moderateScale} from "react-native-size-matters"
-const InputWithLabel = ({label,placeholder,criteria}) => {
- console.log( Dimensions.get("screen"));
+const InputWithLabel = ({label,placeholder,criteria,data ,setData}) => {
   return (
        <View className='space-y-1.5  mb-2 '>
-        <View className={`${Dimensions.get("screen").height<380 ? 'flex-row justify-center items-center space-x-3 ':""}`} style={{
+        <View className='' style={{
 
         }}>
 
@@ -20,6 +19,8 @@ const InputWithLabel = ({label,placeholder,criteria}) => {
                 placeholder={placeholder}
                 placeholderTextColor={'#263238'}
                 className=" text-xl border border-[#263238] bg-white rounded-lg "
+                value={data}
+                onChangeText={text=>{setData(text)}}
                 style={
                     {
                         padding:verticalScale(4),

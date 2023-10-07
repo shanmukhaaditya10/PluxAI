@@ -7,16 +7,25 @@ import {
   ScrollView,
   Dimensions
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from '../Components/Footer';
 import InputWithLabel from '../Components/InputWithLabel';
 import {scale, verticalScale, moderateScale,moderateVerticalScale} from 'react-native-size-matters';
 import CircleTexture from '../assets/CircleTexture.svg'
+import { useAuth } from '../Contexts/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 const DeviceSetup = () => {
-  return (
-   <View className="relative flex-1">
+  
 
+  const navigation = useNavigation()
+  
+const {verifyDeviceData,deviceId, setDeviceId,
+  clientId, setClientId} = useAuth()
+
+
+  return (
+   <View className="relative flex-1 ">
     <View
     style={{
       backgroundColor: '#EDEDED',
@@ -24,20 +33,20 @@ const DeviceSetup = () => {
       
     }}
   >
-   <CircleTexture width={Dimensions.get("screen").width} height={Dimensions.get("screen").height}  style={{position:"absolute"  }}/>
+   <CircleTexture width={Dimensions.get("screen").width} height={Dimensions.get("screen").height}  style={{position:"absolute"}}/>
       <Image
         source={require('../assets/PluxLogo.png')}
         fill
         className="absolute top-10 left-10 "
         style={{width:scale(100), height:scale(45)}}
       />
-      <ScrollView className="px-4 w-full "  
+      <ScrollView className="px-4 w-full"  
        contentContainerStyle={{
         alignItems:"center",
-        
+        justifyContent:"center"
       }} keyboardShouldPersistTaps="handled">
 
-        <View className= {`items-center justify-center w-full  ${Dimensions.get("screen").height<380 ? 'flex-row items-center space-x-3 space-y-1.5 pt-14 justify-around':""}`} >
+        <View className= {`items-center justify-center w-full`} >
           
           <View className=" justify-center items-center" style={{padding:moderateVerticalScale(12)}}>
             <Image
@@ -62,16 +71,24 @@ const DeviceSetup = () => {
               label="Client Id"
               placeholder="Example 1234567890"
               criteria="Enter 12 digit device number"
+              data={clientId}
+              setData={setClientId}
+
             />
             <InputWithLabel
               label="Location Id"
               placeholder="Example 645632"
               criteria="The code from your email"
+            
+
             />
             <InputWithLabel
               label="Device Id"
               placeholder="Example 645632"
               criteria="The code from your email"
+              data={deviceId}
+              setData={setDeviceId}
+
             />
           </View>
          
@@ -80,6 +97,7 @@ const DeviceSetup = () => {
         </View>
         <View className="items-center space-y-1 ">
             <TouchableOpacity className=" bg-[#2E3192] p-2 justify-center items-center rounded-md" 
+            onPress={verifyDeviceData}
             style={{
               width:moderateScale(80),
               height:moderateScale(40)

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "502225683013",
+    "project_id": "pluxi-3716a",
+    "storage_bucket": "pluxi-3716a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502225683013:android:58ef45a8d5aa874d37d92c",
+        "android_client_info": {
+          "package_name": "com.pluxai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502225683013-2neq4g6qbi5avpm6hksh8sim1p7b9els.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8nZXdaY1LRfgKt6IOiUqpRLQtVHruFVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502225683013-2neq4g6qbi5avpm6hksh8sim1p7b9els.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

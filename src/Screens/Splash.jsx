@@ -4,12 +4,12 @@ import React,{useEffect} from 'react'
 import { useAuth } from '../Contexts/AuthContext'
 import {moderateVerticalScale} from 'react-native-size-matters'
 import CircleTexture from '../assets/CircleTexture.svg'
-const Splash = () => {
-    const navigation = useNavigation()
+const Splash = ({navigation}) => {
+    
     const {userToken} = useAuth()
     useEffect(() => {
       setTimeout(() => {
-        {userToken ? navigation.navigate('Home') : navigation.navigate('Auth')}
+        {!userToken ? navigation.navigate('Home') : navigation.navigate('Auth')}
         
       
       },3000)
