@@ -1,7 +1,8 @@
 import React,{createContext,useState,useContext} from 'react'
 import firestore from '@react-native-firebase/firestore';
-
-
+import { useAppContext } from './AppContext';
+import alertData from '../AlertData/AlertData'
+import NetInfo from "@react-native-community/netinfo"
 const AuthContext = createContext()
 
 export function useAuth() {
@@ -15,9 +16,23 @@ export function useAuth() {
 const AuthProvider = ({children}) => {
   const [deviceId, setDeviceId] = useState('')
   const [clientId, setClientId] = useState('')
+  const {IsModalVisible,setisModalVisible} = useAppContext()
+  const [data,setData] = useState()
+
+  
   const verifyDeviceData=async () =>{
     try {
-
+      NetInfo.fetch().then(state => {
+       
+         if (!state.isConnected) {
+          setData(alertData.NetworkError) 
+          setisModalVisible(!IsModalVisible)
+          
+          return
+ 
+       }
+});
+    
       const deviceCollection = await firestore().collection('Device-data')
       .where('device_id', '==', deviceId)
       .where("client",'==',clientId)
@@ -38,7 +53,7 @@ const AuthProvider = ({children}) => {
   return (
    <AuthContext.Provider value={{userToken,verifyDeviceData
     , setDeviceId,
-    clientId, setClientId
+    clientId, setClientId,data
    }}>
     {children}
    </AuthContext.Provider>

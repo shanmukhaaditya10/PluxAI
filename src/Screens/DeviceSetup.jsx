@@ -14,18 +14,26 @@ import {scale, verticalScale, moderateScale,moderateVerticalScale} from 'react-n
 import CircleTexture from '../assets/CircleTexture.svg'
 import { useAuth } from '../Contexts/AuthContext';
 import { useNavigation } from '@react-navigation/native';
+import AlertModal from '../Components/AlertModal';
+import jsonData from '../AlertData/AlertData'
+import { useAppContext } from '../Contexts/AppContext';
+const DeviceSetup = ({navigation}) => {
+  const {isModalVisible,setisModalVisible}= useAppContext()
 
-const DeviceSetup = () => {
-  
 
-  const navigation = useNavigation()
-  
+
 const {verifyDeviceData,deviceId, setDeviceId,
   clientId, setClientId} = useAuth()
 
 
   return (
    <View className="relative flex-1 ">
+  
+<AlertModal isVisible={isModalVisible} setIsVisible={setisModalVisible}
+data={jsonData}
+/>
+      
+
     <View
     style={{
       backgroundColor: '#EDEDED',
@@ -33,6 +41,7 @@ const {verifyDeviceData,deviceId, setDeviceId,
       
     }}
   >
+    
    <CircleTexture width={Dimensions.get("screen").width} height={Dimensions.get("screen").height}  style={{position:"absolute"}}/>
       <Image
         source={require('../assets/PluxLogo.png')}

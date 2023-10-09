@@ -5,12 +5,12 @@ import Login from '../Screens/Login'
 import DeviceSetup from '../Screens/DeviceSetup';
 import UserSetup from '../Screens/UserSetup';
 
+
 const AuthStack = () => {
   const Stack = createNativeStackNavigator();
    
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
- 
     <Stack.Screen name="DeviceSetup" component={DeviceSetup} />
     <Stack.Screen name="UserSetup" component={UserSetup} />
     <Stack.Screen name="Login" component={Login} />
