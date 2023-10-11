@@ -10,15 +10,14 @@ import {
 import React, { useState } from 'react';
 import Footer from '../Components/Footer';
 import InputWithLabel from '../Components/InputWithLabel';
-import {scale, verticalScale, moderateScale,moderateVerticalScale} from 'react-native-size-matters';
+import {scale, moderateScale,moderateVerticalScale} from 'react-native-size-matters';
 import CircleTexture from '../assets/CircleTexture.svg'
 import { useAuth } from '../Contexts/AuthContext';
-import { useNavigation } from '@react-navigation/native';
 import AlertModal from '../Components/AlertModal';
 import jsonData from '../AlertData/AlertData'
 import { useAppContext } from '../Contexts/AppContext';
 const DeviceSetup = ({navigation}) => {
-  const {isModalVisible,setisModalVisible}= useAppContext()
+  const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
 
 
 
@@ -49,33 +48,43 @@ data={jsonData}
         className="absolute top-10 left-10 "
         style={{width:scale(100), height:scale(45)}}
       />
-      <ScrollView className="px-4 w-full"  
+      <ScrollView className="w-full  "  
+      
        contentContainerStyle={{
         alignItems:"center",
+        flex:1,
         justifyContent:"center"
+        
+
       }} keyboardShouldPersistTaps="handled">
 
         <View className= {`items-center justify-center w-full`} >
           
-          <View className=" justify-center items-center" style={{padding:moderateVerticalScale(12)}}>
+          <View className=" justify-center items-center" style={{}}>
             <Image
               source={require('../assets/UserLogo.png')}
               
-              style={{
-                width: verticalScale(40),
-                height: verticalScale(40),
+              style={!isTablet()?{
+                width: scale(60),
+                height:scale(60),
+              }:{
+                width: scale(35),
+                height:scale(35),
               }}
             />
             <Text
               className="text-center text-[#262626]  "
-              style={{
+              style={isTablet()?{
                 fontSize: moderateScale(20),
-                marginBottom: moderateScale(3),
+               
+              }:{
+                fontSize: moderateScale(22),
+               
               }}>
               Device Setup
             </Text>
           </View>
-          <View className="form " >
+          <View className="form  w-full  justify-center items-center"  style={!isTablet()?{marginVertical:moderateScale(15)}:{marginVertical:moderateScale(15),width:'35%'}}>
             <InputWithLabel
               label="Client Id"
               placeholder="Example 1234567890"
@@ -99,35 +108,39 @@ data={jsonData}
               setData={setDeviceId}
 
             />
+             <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4" 
+            onPress={verifyDeviceData}
+            style={!isTablet?{
+              width:moderateScale(70),
+              height:moderateScale(32)
+            }:{
+              width:moderateScale(75),
+              height:moderateScale(35)
+            }}
+            >
+              <Text className=" text-white text-[16px] font-[600]  " style={{
+                fontSize:moderateScale(14)
+              }}>NEXT</Text>
+            </TouchableOpacity>
           </View>
          
          
          
         </View>
-        <View className="items-center space-y-1 ">
-            <TouchableOpacity className=" bg-[#2E3192] p-2 justify-center items-center rounded-md" 
-            onPress={verifyDeviceData}
-            style={{
-              width:moderateScale(80),
-              height:moderateScale(40)
-            }}
-            >
-              <Text className=" text-white text-[16px] font-[600] " style={{
-                fontSize:moderateScale(15)
-              }}>NEXT</Text>
-            </TouchableOpacity>
-            <Text className="text-[#8C8CA1]  text-center"  
+        <View className="items-center ">
+           
+            <Text className="text-[#8C8CA1]  text-center px-2"  
             style={{
               fontSize:moderateScale(12)
             }}
             >
-              Contact support if you don't have the correct information {'\n'}
-              <Text className="text-[#2E3192] font-[500]" >
-                pluxai@secquraise.com
+              Contact support if you don't have the correct information   
+                <Text className="text-[#2E3192] font-[500] " >{'\n'} 
+                   pluxai@secquraise.com
               </Text>
             </Text>
-        <Footer />
           </View>
+        <Footer />
  
       </ScrollView>
     </View>

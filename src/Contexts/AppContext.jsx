@@ -1,6 +1,6 @@
 import React,{createContext,useState,useContext} from 'react'
-import {getBatteryLevel} from 'react-native-device-info';
-
+import {getBatteryLevel,isTablet} from 'react-native-device-info';
+import { OrientationLocker, PORTRAIT, LANDSCAPE } from "react-native-orientation-locker";
 
 const AppContext = createContext()
 
@@ -29,9 +29,13 @@ const isLowBattery=()=>{
         )
 }
 isLowBattery()
-
 return (
-     <AppContext.Provider value={{isLowBattery,isModalVisible,setisModalVisible}}>
+     <AppContext.Provider value={{isLowBattery,isModalVisible,setisModalVisible,isTablet}}>
+         <OrientationLocker
+        orientation={isTablet() ? LANDSCAPE : PORTRAIT}
+        onChange={orientation => console.log('onChange', orientation)}
+        onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
+      />
       {children}
      </AppContext.Provider>
     )
