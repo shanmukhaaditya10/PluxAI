@@ -5,10 +5,9 @@ import { useAppContext } from '../Contexts/AppContext'
 const InputWithLabel = ({label,placeholder,criteria,data ,setData}) => {
   const {isTablet} = useAppContext()
   return (
-       <View className='space-y-1.5 w-full px-8'>
-        <View className=' '>
+      
+      <View className="w-full ">
 
-   
               <Text className="text-[20px] text-[#263238] font-[350]" style={{
                 fontSize:moderateScale(13)
               }}>
@@ -22,23 +21,23 @@ const InputWithLabel = ({label,placeholder,criteria,data ,setData}) => {
                 value={data}
                 onChangeText={text=>{setData(text)}}
                 style={
-                   !isTablet()? {
-                        padding:scale(8),
-                        fontSize:scale(12),
-                        width:'full'
-                    }:{
+                   isTablet()?{
                       padding:scale(5),
                       fontSize:scale(8),
                       width:'full'
-                  }
+                  }: {
+                    padding:scale(8),
+                    fontSize:scale(12),
+                    width:'full'
+                }
                 }
               />
-              <Text className="text-[#8C8CA1] " style={{fontSize:moderateScale(11)}}>
+             {criteria && <Text className="text-[#8C8CA1] " style={{fontSize:moderateScale(11)}}>
                 {criteria}
-              </Text>
+              </Text>}
                    </View>
-              </View>
-            </View>
+        </View>
+      
      
   )
 }

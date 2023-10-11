@@ -64,12 +64,12 @@ data={jsonData}
             <Image
               source={require('../assets/UserLogo.png')}
               
-              style={!isTablet()?{
-                width: scale(60),
-                height:scale(60),
-              }:{
+              style={isTablet()?{
                 width: scale(35),
                 height:scale(35),
+              }:{
+                width: scale(60),
+                height:scale(60),
               }}
             />
             <Text
@@ -84,7 +84,7 @@ data={jsonData}
               Device Setup
             </Text>
           </View>
-          <View className="form  w-full  justify-center items-center"  style={!isTablet()?{marginVertical:moderateScale(15)}:{marginVertical:moderateScale(15),width:'35%'}}>
+          <View className="form  w-full  justify-center items-center"  style={isTablet()?{marginVertical:moderateScale(15),width:'35%'}:{marginVertical:moderateScale(15)}}>
             <InputWithLabel
               label="Client Id"
               placeholder="Example 1234567890"
@@ -110,12 +110,12 @@ data={jsonData}
             />
              <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4" 
             onPress={verifyDeviceData}
-            style={!isTablet?{
-              width:moderateScale(70),
-              height:moderateScale(32)
-            }:{
+            style={isTablet?{
               width:moderateScale(75),
               height:moderateScale(35)
+            }:{
+              width:moderateScale(70),
+              height:moderateScale(32)
             }}
             >
               <Text className=" text-white text-[16px] font-[600]  " style={{
