@@ -28,13 +28,12 @@ const isLowBattery=()=>{
         }
         )
 }
-isLowBattery()
+
 return (
      <AppContext.Provider value={{isLowBattery,isModalVisible,setisModalVisible,isTablet}}>
          <OrientationLocker
         orientation={isTablet() ? LANDSCAPE : PORTRAIT}
-        onChange={orientation => console.log('onChange', orientation)}
-        onDeviceChange={orientation => console.log('onDeviceChange', orientation)}
+   
       />
       {children}
      </AppContext.Provider>

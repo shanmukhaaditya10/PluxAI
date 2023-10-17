@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native'
+import { StackActions, useNavigation } from '@react-navigation/native'
 import { Dimensions, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React,{useEffect} from 'react'
 import { useAuth } from '../Contexts/AuthContext'
@@ -9,7 +9,7 @@ const Splash = ({navigation}) => {
     const {userToken} = useAuth()
     useEffect(() => {
       setTimeout(() => {
-        {!userToken ? navigation.navigate('Home') : navigation.navigate('Auth')}
+        {!userToken ? navigation.navigate('Home') : navigation.dispatch(StackActions.replace('Auth'))}
         
       
       },3000)

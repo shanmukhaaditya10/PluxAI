@@ -27,7 +27,17 @@ const alertData = {
     DeviceReady: {
       title: "Your Device is Ready",
       body: "You can proceed Now !"
-    }
+    },
+    WrongPassword: {
+      title: "Wrong Password",
+      body: "Please check Your Enter password is Right",
+      contact: "Contact support if you don't have the correct informationpluxai@secquraise.com"
+    },
+    WrongUsername: {
+      title: "Wrong Username",
+      body: "Please check Your Enter Username is right",
+      contact: "Contact support if you don't have the correct informationpluxai@secquraise.com"
+    },
   };
   
   export default alertData;

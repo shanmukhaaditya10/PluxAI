@@ -5,28 +5,35 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Dimensions
+  Dimensions,
+  KeyboardAvoidingView
 } from 'react-native';
 import React, { useState } from 'react';
 import Footer from '../Components/Footer';
 import InputWithLabel from '../Components/InputWithLabel';
-import {scale, moderateScale,moderateVerticalScale} from 'react-native-size-matters';
+import {scale, moderateScale} from 'react-native-size-matters';
 import CircleTexture from '../assets/CircleTexture.svg'
 import { useAuth } from '../Contexts/AuthContext';
 import AlertModal from '../Components/AlertModal';
-import jsonData from '../AlertData/AlertData'
+import jsonData from '../AlertData/AlertData';
 import { useAppContext } from '../Contexts/AppContext';
-const DeviceSetup = ({navigation}) => {
+const UserSetup = ({navigation}) => {
   const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
 
 
+const {email,setEmail,
+  phone,setPhone,
+  username,setUsername,
+  password,setPassword,
+  reEnterPassword,setReEnterPassword,storeUserDataLocally } = useAuth()
 
-const {verifyDeviceData,deviceId, setDeviceId,
-  clientId, setClientId} = useAuth()
 
 
   return (
-
+<KeyboardAvoidingView style={{
+     flex:1,
+     width:"full"
+  }} >
     <ScrollView className="w-full"  
       
     contentContainerStyle={{
@@ -78,14 +85,17 @@ data={jsonData}
               label="Email Id"
               placeholder="Email ID"
               criteria=""
-              data={clientId}
-              setData={setClientId}
+              data={email.toLowerCase()}
+              setData={setEmail}
 
             />
             <InputWithLabel
               label="Phone No."
               placeholder="Phone No."
               criteria=""
+              data={phone}
+              setData={setPhone}
+
             
 
             />
@@ -93,8 +103,8 @@ data={jsonData}
               label="Username"
               placeholder="Username"
               criteria=""
-              data={deviceId}
-              setData={setDeviceId}
+              data={username}
+              setData={setUsername}
 
             />
            
@@ -102,21 +112,31 @@ data={jsonData}
               label="Password"
               placeholder="Password"
               criteria=""
-              data={deviceId}
-              setData={setDeviceId}
+              data={password}
+              setData={setPassword}
+              isPassword={true}
 
             />
              <InputWithLabel
               label="Re-Enter Password"
               placeholder="Re-Enter Password"
               criteria=""
-              data={deviceId}
-              setData={setDeviceId}
+              data={reEnterPassword}
+              setData={setReEnterPassword}
+              isPassword={true}
 
             />
             </View>
+            {!Boolean(email && password && username && reEnterPassword && phone) ? <Text className="text-red-700">*please fill all fields</Text>:null}
              <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4" 
-            onPress={verifyDeviceData}
+             disabled={!Boolean(email && password && username && reEnterPassword && phone)}
+            onPress={()=>storeUserDataLocally({
+              email,
+              phone,
+              username,
+              password,
+              reEnterPassword
+            })}
             style={isTablet()?{
               width:moderateScale(75),
               height:moderateScale(35)
@@ -147,11 +167,11 @@ data={jsonData}
  
       </ScrollView>
  
-   
+      </KeyboardAvoidingView>
 
   );
 };
 
-export default DeviceSetup;
+export default UserSetup;
 
 const styles = StyleSheet.create({});

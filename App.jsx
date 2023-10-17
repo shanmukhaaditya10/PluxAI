@@ -1,18 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React,{useState} from 'react'
+import { KeyboardAvoidingView, StyleSheet } from 'react-native'
+import React,{} from 'react'
 import AppNavigator from './src/Navigators/AppNavigator'
 import AuthProvider from './src/Contexts/AuthContext'
 import AppProvider from './src/Contexts/AppContext'
+import { NavigationContainer } from '@react-navigation/native'
 
 
 const App = () => {
 
   return (
+
+    <NavigationContainer>
+
     <AppProvider>
-    <AuthProvider>
+    <AuthProvider>   
+   
       <AppNavigator/>
+      
     </AuthProvider>
     </AppProvider>
+    </NavigationContainer>
 
   )
 }

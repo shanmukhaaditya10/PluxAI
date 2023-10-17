@@ -4,7 +4,7 @@ import React from 'react'
 const Initial = () => {
   return (
     <View>
-      <Text>Initial</Text>
+      <Text className="text-red-600">Initial</Text>
     </View>
   )
 }

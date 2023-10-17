@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Dimensions
+  Dimensions,
+  KeyboardAvoidingView
 } from 'react-native';
 import React, { useState } from 'react';
 import Footer from '../Components/Footer';
@@ -16,16 +17,21 @@ import { useAuth } from '../Contexts/AuthContext';
 import AlertModal from '../Components/AlertModal';
 import jsonData from '../AlertData/AlertData'
 import { useAppContext } from '../Contexts/AppContext';
-const DeviceSetup = ({navigation}) => {
+import { useNavigation } from '@react-navigation/native';
+const DeviceSetup = ({}) => {
   const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
-
 
 
 const {verifyDeviceData,deviceId, setDeviceId,
   clientId, setClientId} = useAuth()
+  const navigation = useNavigation()
 
 
   return (
+    <KeyboardAvoidingView style={{
+      flex:1,
+      width:"full"
+   }}>
    <View className="relative flex-1 ">
   
 <AlertModal isVisible={isModalVisible} setIsVisible={setisModalVisible}
@@ -48,7 +54,7 @@ data={jsonData}
         className="absolute top-10 left-10 "
         style={{width:scale(100), height:scale(45)}}
       />
-      <ScrollView className="w-full  "  
+      <ScrollView className="w-full px-5 "  
       
        contentContainerStyle={{
         alignItems:"center",
@@ -146,6 +152,7 @@ data={jsonData}
     </View>
  
     </View>
+    </KeyboardAvoidingView>
 
   );
 };
