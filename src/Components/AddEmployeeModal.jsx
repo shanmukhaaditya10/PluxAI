@@ -2,9 +2,11 @@ import {StyleSheet, Text, View, Modal,TouchableOpacity} from 'react-native';
 import React from 'react';
 import {moderateScale, scale} from 'react-native-size-matters';
 import { useAppContext } from '../Contexts/AppContext';
-const AlertModal = ({isVisible, setIsVisible ,btn2}) => {
+import { useNavigation } from '@react-navigation/native';
+const AddEmployeeModal = ({isVisible, setIsVisible }) => {
   const {data} = useAppContext()
   const {isTablet} = useAppContext()
+  const navigation = useNavigation()
   return (
     <Modal
       animationType="slide"
@@ -31,13 +33,29 @@ const AlertModal = ({isVisible, setIsVisible ,btn2}) => {
           <View className="body mx-10 ">
             <Text style={styles.body}>
             {data?.body}
-              {"\n"}
-              {"\n"}
-              {data?.contact}
+             
             </Text>
           </View>
-          <View className="button">
-            <TouchableOpacity className=" border-2 border-[#635BC3] " style={[{
+          <View className="button items-center space-y-2.5">
+            <TouchableOpacity className=" bg-[#635BC3] border-2 border-[#635BC3] px-4" style={[{
+                borderRadius:moderateScale(6),
+                alignItems:"center",
+                justifyContent:"center",
+                padding:moderateScale(2),
+                
+            },isTablet()?{ width:moderateScale(45),
+              height:moderateScale(30),}:{
+                height:moderateScale(45)}]} onPress={()=>setIsVisible(!isVisible)}>
+                <Text className="text-[#ffffff] font-medium" style={{
+                    fontSize:scale(isTablet()? 8:12),
+                }} >ADD EMPLOYEE</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity className=" border-2 border-[#635BC3] px-5" 
+            onPressIn={()=>{ 
+                navigation.goBack()
+                setIsVisible(!isVisible)}}
+            style={[{
                 borderRadius:moderateScale(6),
                
                 
@@ -46,12 +64,15 @@ const AlertModal = ({isVisible, setIsVisible ,btn2}) => {
                 padding:moderateScale(2)
                 
             },isTablet()?{ width:moderateScale(45),
-              height:moderateScale(30),}:{width:moderateScale(55),
-                height:moderateScale(40)}]} onPress={()=>setIsVisible(!isVisible)}>
+              height:moderateScale(30),}:{
+                height:moderateScale(40)}]} onPress={()=>{ 
+                    
+                    setIsVisible(!isVisible)}}>
                 <Text className="text-[#2E3192]" style={{
                     fontSize:scale(isTablet()? 8:14),
-                }} >OK</Text>
+                }} >GO BACK</Text>
             </TouchableOpacity>
+            
             
           </View>
         </View>
@@ -60,7 +81,7 @@ const AlertModal = ({isVisible, setIsVisible ,btn2}) => {
   );
 };
 
-export default AlertModal;
+export default AddEmployeeModal;
 
 const styles = StyleSheet.create({
   topic: {

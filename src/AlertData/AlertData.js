@@ -38,6 +38,12 @@ const alertData = {
       body: "Please check Your Enter Username is right",
       contact: "Contact support if you don't have the correct informationpluxai@secquraise.com"
     },
+    EmployeeIdNotAvailable: {
+      title: "Employee Id is not available",
+      body: "Add your employee now",
+      contact: ""
+    },
+
   };
   
   export default alertData;

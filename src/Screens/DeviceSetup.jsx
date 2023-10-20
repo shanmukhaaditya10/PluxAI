@@ -25,7 +25,6 @@ const {verifyDeviceData,deviceId, setDeviceId,
 
 
 
-  console.log(Boolean( deviceId));
 
 
   return (
