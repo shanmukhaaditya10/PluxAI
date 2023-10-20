@@ -4,6 +4,7 @@ import AuthStack from './AuthStack';
 import HomeStack from './HomeStack';
 import Splash from '../Screens/Splash';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import DeviceSetup from '../Screens/DeviceSetup';
 
 
 export default function AppNavigator() {
@@ -17,6 +18,7 @@ export default function AppNavigator() {
       }
      }>
         <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="DeviceSetup" component={DeviceSetup} />
         <Stack.Screen name="Auth" component={AuthStack} />
         <Stack.Screen name="Home" component={HomeStack} />
       </Stack.Navigator>

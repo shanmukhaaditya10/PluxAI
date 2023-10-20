@@ -9,7 +9,7 @@ const Splash = ({navigation}) => {
     const {userToken} = useAuth()
     useEffect(() => {
       setTimeout(() => {
-        {!userToken ? navigation.navigate('Home') : navigation.dispatch(StackActions.replace('Auth'))}
+        {!userToken ? navigation.navigate('Home') : navigation.dispatch(StackActions.replace('DeviceSetup'))}
         
       
       },3000)

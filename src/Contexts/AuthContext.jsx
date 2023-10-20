@@ -15,8 +15,9 @@ export function useAuth() {
 
 
 const AuthProvider = ({children}) => {
-  const [deviceId, setDeviceId] = useState('')
   const [clientId, setClientId] = useState('')
+  const [deviceId, setDeviceId] = useState('')
+  const [branchId,setBranchId] =useState('')
   const {IsModalVisible,setisModalVisible} = useAppContext()
   const [data,setData] = useState()
   const [email,setEmail] = useState('')
@@ -25,7 +26,6 @@ const AuthProvider = ({children}) => {
   const [password,setPassword] = useState('')
   const [reEnterPassword,setReEnterPassword] = useState('')
   const [userToken, setUserToken] = useState('aasas')
-
   const navigation = useNavigation()
   const storeUserDataLocally = async(value)=>{
    
@@ -78,10 +78,7 @@ if(v!=null){
   
   return
 }
-//       vj = JSON.parse(v)
-//       const valueString = JSON.stringify(value)
-//       await AsyncStorage.setItem(`${username}`, valueString);
-//       navigation.navigate("Login")
+
      
     } catch (e) {
       console.log(e);
@@ -106,10 +103,11 @@ if(v!=null){
       const deviceCollection = await firestore().collection('Device-data')
       .where('device_id', '==', deviceId)
       .where("client",'==',clientId)
+      .where("branch","==",branchId)
       .get().then(data=>{
         console.log('data',data.size);
         if(data.size == 1){
-          navigation.navigate('UserSetup')
+          navigation.dispatch(StackActions.replace('Home'))
         }else{
           console.log("no data found");
           setData(alertData.WrongEntry) 
@@ -124,8 +122,8 @@ if(v!=null){
     }
     } 
   return (
-   <AuthContext.Provider  value={{userToken,verifyDeviceData
-    , setDeviceId,
+   <AuthContext.Provider  value={{userToken,verifyDeviceData,
+    deviceId, setDeviceId,
     clientId, 
     setClientId,
     data,
@@ -134,7 +132,8 @@ phone,setPhone,
 username,setUsername,
 password,setPassword,
 reEnterPassword,setReEnterPassword,storeUserDataLocally,
-verifyUserLocally
+verifyUserLocally,
+branchId,setBranchId
    }}>
     {children}
    </AuthContext.Provider>

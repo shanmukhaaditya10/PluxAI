@@ -25,13 +25,13 @@ const Login = () => {
     password,setPassword,
     verifyUserLocally
      } = useAuth()
+     console.log('username',username);
   return (
   <KeyboardAvoidingView style={{
      flex:1,
      width:"full"
   }}>
     <ScrollView   
-      
     contentContainerStyle={{
      alignItems:"center",
      justifyContent:"center",

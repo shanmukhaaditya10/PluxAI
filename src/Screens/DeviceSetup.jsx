@@ -17,14 +17,15 @@ import { useAuth } from '../Contexts/AuthContext';
 import AlertModal from '../Components/AlertModal';
 import jsonData from '../AlertData/AlertData'
 import { useAppContext } from '../Contexts/AppContext';
-import { useNavigation } from '@react-navigation/native';
 const DeviceSetup = ({}) => {
   const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
 
-
 const {verifyDeviceData,deviceId, setDeviceId,
-  clientId, setClientId} = useAuth()
-  const navigation = useNavigation()
+  clientId, setClientId,branchId,setBranchId} = useAuth()
+
+
+
+  console.log(Boolean( deviceId));
 
 
   return (
@@ -100,9 +101,11 @@ data={jsonData}
 
             />
             <InputWithLabel
-              label="Location Id"
+              label="Branch Id"
               placeholder="Example 645632"
               criteria="The code from your email"
+              data={branchId}
+              setData={setBranchId}
             
 
             />
@@ -114,7 +117,8 @@ data={jsonData}
               setData={setDeviceId}
 
             />
-             <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4" 
+             <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4"
+             disabled={!Boolean( clientId && branchId && deviceId )} 
             onPress={verifyDeviceData}
             style={isTablet?{
               width:moderateScale(75),

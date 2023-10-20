@@ -27,7 +27,7 @@ const {email,setEmail,
   password,setPassword,
   reEnterPassword,setReEnterPassword,storeUserDataLocally } = useAuth()
 
-
+console.log(email);
 
   return (
 <KeyboardAvoidingView style={{
