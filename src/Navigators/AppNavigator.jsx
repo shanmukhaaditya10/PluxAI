@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
+import  React from 'react';
+import AdminStack from './AdminStack';
+import AttendanceStack from './AttendanceStack';
 import Splash from '../Screens/Splash';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DeviceSetup from '../Screens/DeviceSetup';
+import UserSetup from '../Screens/UserSetup';
 
 
 export default function AppNavigator() {
@@ -19,8 +19,12 @@ export default function AppNavigator() {
      }>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="DeviceSetup" component={DeviceSetup} />
-        <Stack.Screen name="Auth" component={AuthStack} />
-        <Stack.Screen name="Home" component={HomeStack} />
+        {/* for all admin screens */}
+   
+        
+        <Stack.Screen name="Admin" component={AdminStack} />
+        {/* for all attendance screens */}
+        <Stack.Screen name="Attendance" component={AttendanceStack} />
       </Stack.Navigator>
      
     

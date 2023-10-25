@@ -12,49 +12,36 @@ export function useAuth() {
 }
 
 const AuthProvider = ({children}) => {
+  const {IsModalVisible, setisModalVisible,data,setData} = useAppContext();
+
   const [clientId, setClientId] = useState('');
   const [deviceId, setDeviceId] = useState('');
   const [branchId, setBranchId] = useState('');
-  const {IsModalVisible, setisModalVisible,data,setData} = useAppContext();
-  
+
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [reEnterPassword, setReEnterPassword] = useState('');
-  const [userToken, setUserToken] = useState('aasas');
   const navigation = useNavigation();
   const storeUserDataLocally = async value => {
     try {
-      NetInfo.fetch().then(state => {
-        if (!state.isConnected) {
-          setData(alertData.NetworkError);
-          setisModalVisible(!IsModalVisible);
-
-          return;
-        }
-      });
-      const v = await AsyncStorage.getItem(`${username}`);
-      if (v != null) {
-        console.log('user present');
-        navigation.navigate('Login');
-      }
-      vj = JSON.parse(v);
+      await AsyncStorage.removeItem("user",(e)=>console.log(e))
       const valueString = JSON.stringify(value);
-      await AsyncStorage.setItem(`${username}`, valueString);
+      await AsyncStorage.setItem(`user`, valueString);
       navigation.navigate('Login');
     } catch (e) {
       console.log(e);
     }
   };
-  const verifyUserLocally = async value => {
+  const verifyUserLocally = async (value) => {
     try {
-      const v = await AsyncStorage.getItem(`${username}`);
+      const v = await AsyncStorage.getItem(`user`);
 
       if (v != null) {
         vJson = JSON.parse(v);
         if (password == vJson.password) {
-          navigation.dispatch(StackActions.replace('Home'));
+          navigation.dispatch(StackActions.replace('AdminHome'));
         } else {
           setData(alertData.WrongPassword);
           setisModalVisible(!IsModalVisible);
@@ -92,7 +79,7 @@ const AuthProvider = ({children}) => {
           console.log('data', data.size);
           if (data.size == 1) {
             AsyncStorage.setItem("DeviceDetails",JSON.stringify({deviceId,clientId,branchId})).then(res=>console.log(res)).catch(err=>console.log(err))
-            navigation.dispatch(StackActions.replace('Home'));
+            navigation.dispatch(StackActions.replace('Attendance'));
           } else {
             console.log('no data found');
             setData(alertData.WrongEntry);
@@ -108,7 +95,6 @@ const AuthProvider = ({children}) => {
   return (
     <AuthContext.Provider
       value={{
-        userToken,
         verifyDeviceData,
         deviceId,
         setDeviceId,

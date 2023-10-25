@@ -21,7 +21,9 @@ const DeviceSetup = ({}) => {
   const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
 
 const {verifyDeviceData,deviceId, setDeviceId,
-  clientId, setClientId,branchId,setBranchId} = useAuth()
+  clientId, setClientId,branchId,setBranchId,
+
+} = useAuth()
 
 
 

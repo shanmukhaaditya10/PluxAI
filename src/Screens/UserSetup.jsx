@@ -52,7 +52,7 @@ data={jsonData}
         source={require('../assets/PluxLogo.png')}
         fill
         className="absolute top-10 left-10 "
-        style={{width:scale(100), height:scale(45)}}
+        style={isTablet()?{width:scale(70), height:scale(35)}:{width:scale(100), height:scale(45)}}
       />
         
           <View className=" justify-center items-center mt-4 " >

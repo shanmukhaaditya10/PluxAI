@@ -19,7 +19,7 @@ const AddEmployeeModal = ({isVisible, setIsVisible }) => {
          backgroundColor:'rgba(67, 67, 67,0.5)'
       }}>
         <View
-          className="bg-white items-center text-center px-auto space-y-8 py-4"
+          className="bg-white items-center text-center px-auto space-y-8 py-8"
           style={{
             maxWidth: isTablet()?moderateScale(240):moderateScale(300),
             borderRadius: moderateScale(25),
@@ -36,18 +36,21 @@ const AddEmployeeModal = ({isVisible, setIsVisible }) => {
              
             </Text>
           </View>
-          <View className="button items-center space-y-2.5">
-            <TouchableOpacity className=" bg-[#635BC3] border-2 border-[#635BC3] px-4" style={[{
+          <View className="button items-center space-y-3">
+            <TouchableOpacity className=" bg-[#635BC3] border-2 border-[#635BC3] px-4"  style={[{
                 borderRadius:moderateScale(6),
                 alignItems:"center",
                 justifyContent:"center",
                 padding:moderateScale(2),
                 
-            },isTablet()?{ width:moderateScale(45),
-              height:moderateScale(30),}:{
-                height:moderateScale(45)}]} onPress={()=>setIsVisible(!isVisible)}>
+            },isTablet()?{ 
+              height:moderateScale(35),}:{
+                height:moderateScale(45)}]} onPress={()=>{
+                  setIsVisible(!isVisible)
+                  navigation.navigate('AddEmployee')
+                }}>
                 <Text className="text-[#ffffff] font-medium" style={{
-                    fontSize:scale(isTablet()? 8:12),
+                    fontSize:scale(isTablet()? 9:12),
                 }} >ADD EMPLOYEE</Text>
             </TouchableOpacity>
 
@@ -57,19 +60,17 @@ const AddEmployeeModal = ({isVisible, setIsVisible }) => {
                 setIsVisible(!isVisible)}}
             style={[{
                 borderRadius:moderateScale(6),
-               
-                
                 alignItems:"center",
                 justifyContent:"center",
                 padding:moderateScale(2)
                 
-            },isTablet()?{ width:moderateScale(45),
-              height:moderateScale(30),}:{
+            },isTablet()?{ 
+              height:moderateScale(35),}:{
                 height:moderateScale(40)}]} onPress={()=>{ 
                     
                     setIsVisible(!isVisible)}}>
                 <Text className="text-[#2E3192]" style={{
-                    fontSize:scale(isTablet()? 8:14),
+                    fontSize:scale(isTablet()? 9:14),
                 }} >GO BACK</Text>
             </TouchableOpacity>
             

@@ -4,12 +4,28 @@ import React,{useEffect} from 'react'
 import { useAuth } from '../Contexts/AuthContext'
 import {moderateVerticalScale} from 'react-native-size-matters'
 import CircleTexture from '../assets/CircleTexture.svg'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const Splash = ({navigation}) => {
     
-    const {userToken} = useAuth()
+    const checkIfDeviceSetup = async () => {
+
+      const deviceSetup = await AsyncStorage.getItem('DeviceDetails')
+      if(deviceSetup){
+        return true
+      }else{
+
+        return false
+
+      }
+    
+    }
     useEffect(() => {
+      checkIfDeviceSetup().then(res=>console.log(res))
       setTimeout(() => {
-        {!userToken ? navigation.navigate('Home') : navigation.dispatch(StackActions.replace('DeviceSetup'))}
+        
+        checkIfDeviceSetup().then(res=>{
+          res ?navigation.dispatch(StackActions.replace('Attendance')) : navigation.dispatch(StackActions.replace('DeviceSetup'))
+        }) 
         
       
       },3000)

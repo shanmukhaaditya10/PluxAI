@@ -10,8 +10,6 @@ import ListOfEmployeesIcon from '../assets/ListOfEmployeesIcon.svg';
 import SettingsIcon from '../assets/SettingsIcon.svg';
 import Footer from '../Components/Footer';
 import { useNavigation } from '@react-navigation/native';
-import { useAppContext } from '../Contexts/AppContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AdminHome = () => {
   const navigation = useNavigation()
@@ -19,7 +17,7 @@ const AdminHome = () => {
     <View className="flex-1 bg-[#EDEDED]">
       <View className="w-full py-5 px-6 justify-between items-center flex-row ">
         <PluxLogo />
-        <TouchableOpacity onPress={()=>navigation.navigate("Auth")}>
+        <TouchableOpacity onPress={()=>navigation.navigate("Attendance")}>
         <Switch />
         </TouchableOpacity>
       </View>
