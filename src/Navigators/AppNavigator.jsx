@@ -4,7 +4,7 @@ import AttendanceStack from './AttendanceStack';
 import Splash from '../Screens/Splash';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DeviceSetup from '../Screens/DeviceSetup';
-import UserSetup from '../Screens/UserSetup';
+
 
 
 export default function AppNavigator() {

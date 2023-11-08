@@ -23,9 +23,9 @@ const Login = () => {
   const {
     username,setUsername,
     password,setPassword,
-    verifyUserLocally
+    verifyUser
      } = useAuth()
-     console.log('username',username);
+    
   return (
   <KeyboardAvoidingView style={{
      flex:1,
@@ -100,7 +100,7 @@ data={jsonData}
             {!Boolean( password && username ) ? <Text className="text-red-700">*please fill all fields</Text>:null}
              <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4" 
              disabled={!Boolean( password && username )}
-            onPress={()=>verifyUserLocally({
+            onPress={()=>verifyUser({
 
               username,
               password,

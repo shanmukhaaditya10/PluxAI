@@ -21,8 +21,9 @@ const DeviceSetup = ({}) => {
   const {isModalVisible,setisModalVisible,isTablet}= useAppContext()
 
 const {verifyDeviceData,deviceId, setDeviceId,
-  clientId, setClientId,branchId,setBranchId,
-
+   branchId,setBranchId,
+  username, setUsername,
+  password, setPassword
 } = useAuth()
 
 
@@ -94,32 +95,32 @@ data={jsonData}
           </View>
           <View className="form  w-full  justify-center items-center"  style={isTablet()?{marginVertical:moderateScale(15),width:'35%'}:{marginVertical:moderateScale(15)}}>
             <InputWithLabel
-              label="Client Id"
+              label="Devive Id"
               placeholder="Example 1234567890"
               criteria="Enter 12 digit device number"
-              data={clientId}
-              setData={setClientId}
-
-            />
-            <InputWithLabel
-              label="Branch Id"
-              placeholder="Example 645632"
-              criteria="The code from your email"
-              data={branchId}
-              setData={setBranchId}
-            
-
-            />
-            <InputWithLabel
-              label="Device Id"
-              placeholder="Example 645632"
-              criteria="The code from your email"
               data={deviceId}
               setData={setDeviceId}
 
             />
+            <InputWithLabel
+              label="Username "
+              placeholder="Example abc"
+              criteria="The code from your email"
+              data={username}
+              setData={setUsername}
+            
+
+            />
+            <InputWithLabel
+              label="Password"
+              placeholder="Example 645632"
+              criteria="The code from your email"
+              data={password}
+              setData={setPassword}
+              isPassword={true}
+            />
              <TouchableOpacity className=" bg-[#2E3192] justify-center items-center rounded-md mt-4"
-             disabled={!Boolean( clientId && branchId && deviceId )} 
+             disabled={!Boolean( username && password && deviceId )} 
             onPress={verifyDeviceData}
             style={isTablet?{
               width:moderateScale(75),

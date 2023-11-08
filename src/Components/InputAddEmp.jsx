@@ -27,7 +27,6 @@ const InputAddEmp = ({values,setValues,field,label,placeholder}) => {
               placeholder={placeholder}
               className=" text-xl text-black border border-[#2E3192] bg-white rounded-lg "
               placeholderTextColor={'#263238'}
-
               onChangeText={(text) => handleInputChange(field, text)}
               value={values[field]}
               style={

@@ -28,6 +28,10 @@ const isLowBattery=()=>{
         }
         )
 }
+// const clear=async()=>{
+//     await AsyncStorage.clear()
+//   }
+//   clear()
 const checkEmpId =async(id)=>{
     AsyncStorage.getItem("DeviceDetails").then(
         data=>{
